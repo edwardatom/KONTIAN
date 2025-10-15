@@ -1,0 +1,522 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KON TIAN BIOTECH</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <!-- 引入EmailJS库用于发送邮件 -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1a1a1a',
+            secondary: '#f5f5f5',
+            accent: '#e0e0e0',
+            dark: '#0a0a0a',
+            light: '#ffffff',
+            whatsapp: '#25d366',
+            linkedin: '#0077b5',
+            twitter: '#1da1f2',
+            facebook: '#1877f2',
+            telegram: '#0088cc'
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-balance {
+        text-wrap: balance;
+      }
+      .transition-transform-opacity {
+        transition-property: transform, opacity;
+      }
+      .mt-3cm {
+        margin-top: 3cm;
+      }
+      .mt-4cm {
+        margin-top: 4cm;
+      }
+      .mt-2cm {
+        margin-top: 2cm;
+      }
+      .form-message {
+        @apply hidden mt-4 p-4 rounded text-center;
+      }
+      .success-message {
+        @apply bg-green-100 text-green-700 border border-green-200;
+      }
+      .error-message {
+        @apply bg-red-100 text-red-700 border border-red-200;
+      }
+      .loading-indicator {
+        @apply inline-block w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin;
+      }
+      .molecule-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 0;
+      }
+      .molecule {
+        position: absolute;
+        border-radius: 50%;
+        background-color: rgba(100, 149, 237, 0.3);
+        animation: float 15s infinite ease-in-out;
+      }
+      .molecule-connection {
+        position: absolute;
+        background-color: rgba(100, 149, 237, 0.2);
+        transform-origin: 0 0;
+        z-index: -1;
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-30px) rotate(10deg);
+      }
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+</head>
+<body class="font-inter bg-light text-primary antialiased">
+  <!-- Header/Navigation -->
+  <header class="fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-6">
+        <!-- 品牌名称靠左对齐，点击返回Hero区域 -->
+        <a href="#hero" class="text-2xl font-semibold tracking-tight ml-0 cursor-pointer" id="brand-logo">KON TIAN BIOTECH</a>
+        <nav class="hidden md:flex space-x-8">
+          <a href="#about" class="text-sm uppercase tracking-widest hover:text-primary/70 transition-colors">ABOUT</a>
+          <a href="#services" class="text-sm uppercase tracking-widest hover:text-primary/70 transition-colors">SERVICES</a>
+          <a href="#contact" class="text-sm uppercase tracking-widest hover:text-primary/70 transition-colors">CONTACT</a>
+        </nav>
+        <button class="md:hidden text-xl" id="menu-toggle">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    <!-- Mobile Menu -->
+    <div class="md:hidden hidden bg-light border-t border-accent/30" id="mobile-menu">
+      <div class="container mx-auto px-4 py-4 space-y-4">
+        <a href="#about" class="block text-sm uppercase tracking-widest hover:text-primary/70 transition-colors">About</a>
+        <a href="#services" class="block text-sm uppercase tracking-widest hover:text-primary/70 transition-colors">Services</a>
+        <a href="#contact" class="block text-sm uppercase tracking-widest hover:text-primary/70 transition-colors">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section - 添加动态化学分子背景 -->
+    <section id="hero" class="pt-32 pb-20 md:pt-40 md:pb-32 flex items-center justify-center relative overflow-hidden">
+      <!-- 动态化学分子背景容器 -->
+      <div class="molecule-container" id="molecule-container"></div>
+      
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="max-w-5xl mx-auto text-center">
+          <!-- 标题在一行显示 -->
+          <h1 class="text-[clamp(1.8rem,4vw,3.5rem)] font-light leading-tight whitespace-nowrap mx-auto mt-3cm text-primary">Professional Sourcer For Drug R&amp;D</h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section - 向下移动了2厘米 -->
+    <section id="about" class="py-20 mt-2cm">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-1 gap-12">
+          <div>
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-light mb-6">About Us</h2>
+            <p class="text-primary/80 mb-6 leading-relaxed">KON TIAN biotech Co., Ltd was founded in 2021, aim to speed drug discovery, improving efficiencies in the compound search and acquisition process. Now KON TIAN service for chemical compound procurement professionals and scientists over the world.</p>
+            <p class="text-primary/80 mb-8 leading-relaxed">
+              We make sourcing and receiving chemical samples &amp; reagents simple.
+            </p>
+            
+            <div class="text-right ml-auto max-w-lg mt-4cm">
+              <p class="italic text-primary/80 text-lg md:text-xl whitespace-nowrap">"Simplicity is the ultimate sophistication."</p>
+              <p class="text-sm font-medium mt-2 text-primary/70">— Leonardo da Vinci</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-secondary">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 服务标题靠左对齐 -->
+        <div class="mb-16">
+          <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-light mb-4">Our Services</h2>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Service 1 -->
+          <div class="bg-white p-8 border border-accent/30 hover:border-primary/30 transition-colors">
+            <i class="fa fa-flask text-3xl mb-6 text-primary/80"></i>
+            <h3 class="text-xl font-medium mb-4">Compound Sourcing</h3>
+            <p class="text-primary/70 leading-relaxed">
+              Efficient procurement of chemical compounds for research and development purposes.
+            </p>
+          </div>
+          
+          <!-- Service 2 -->
+          <div class="bg-white p-8 border border-accent/30 hover:border-primary/30 transition-colors">
+            <i class="fa fa-database text-3xl mb-6 text-primary/80"></i>
+            <h3 class="text-xl font-medium mb-4">Custom Synthesis</h3>
+            <p class="text-primary/70 leading-relaxed">Custom synthesis from Mg to Kg,include building block,screening compound library ,impurity, metabolity, inhibitor, activator</p>
+          </div>
+          
+          <!-- Service 3 -->
+          <div class="bg-white p-8 border border-accent/30 hover:border-primary/30 transition-colors">
+            <i class="fa fa-truck text-3xl mb-6 text-primary/80"></i>
+            <h3 class="text-xl font-medium mb-4">Logistics Solutions</h3>
+            <p class="text-primary/70 leading-relaxed">
+              Specialized shipping and handling of chemical samples to ensure safety and compliance.
+            </p>
+          </div>
+          
+          <!-- Service 4 -->
+          <div class="bg-white p-8 border border-accent/30 hover:border-primary/30 transition-colors">
+            <i class="fa fa-file-text text-3xl mb-6 text-primary/80"></i>
+            <h3 class="text-xl font-medium mb-4">Regulatory Support</h3>
+            <p class="text-primary/70 leading-relaxed">
+              Assistance with compliance documentation and regulatory requirements for chemical procurement.
+            </p>
+          </div>
+          
+          <!-- Service 5 -->
+          <div class="bg-white p-8 border border-accent/30 hover:border-primary/30 transition-colors">
+            <i class="fa fa-line-chart text-3xl mb-6 text-primary/80"></i>
+            <h3 class="text-xl font-medium mb-4">Procurement Analytics</h3>
+            <p class="text-primary/70 leading-relaxed">
+              Data-driven insights to optimize your chemical procurement process and reduce costs.
+            </p>
+          </div>
+          
+          <!-- Service 6 -->
+          <div class="bg-white p-8 border border-accent/30 hover:border-primary/30 transition-colors">
+            <i class="fa fa-users text-3xl mb-6 text-primary/80"></i>
+            <h3 class="text-xl font-medium mb-4">Consulting Services</h3>
+            <p class="text-primary/70 leading-relaxed">
+              Expert guidance on optimizing your chemical sourcing strategy and processes.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-secondary">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div>
+            <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-light mb-6">Get In Touch</h2>
+            <p class="text-primary/80 mb-8 leading-relaxed">Please fill out the form and we'll get back to you as soon as possible.</p>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start">
+                <i class="fa fa-map-marker text-xl mt-1 mr-4 text-primary/80"></i>
+                <p>Pátio do Terrado no10<br>Edifício San Long r/c A<br>Macau</p>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-envelope text-xl mr-4 text-primary/80"></i>
+                <p>hello@essential.design</p>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-phone text-xl mr-4 text-primary/80"></i>
+                <p>+86 (555) 123-4567</p>
+              </div>
+              <!-- WhatsApp和Telegram联系方式 -->
+              <div class="flex items-center">
+                <i class="fa fa-whatsapp text-xl mr-4 text-whatsapp"></i>
+                <p>+86 (555) 987-6543</p>
+              </div>
+              <div class="flex items-center">
+                <i class="fa fa-paper-plane text-xl mr-4 text-telegram"></i>
+                <p>+86 (555) 876-5432</p>
+              </div>
+            </div>
+            <div class="flex space-x-4">
+              <!-- 社交媒体链接 -->
+              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-whatsapp/30 flex items-center justify-center hover:bg-whatsapp hover:text-light hover:border-whatsapp transition-colors">
+                <i class="fa fa-whatsapp"></i>
+              </a>
+              <a href="https://t.me/yourusername" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-telegram/30 flex items-center justify-center hover:bg-telegram hover:text-light hover:border-telegram transition-colors">
+                <i class="fa fa-paper-plane"></i>
+              </a>
+              <a href="https://linkedin.com/company/tongmingbiotech" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-linkedin/30 flex items-center justify-center hover:bg-linkedin hover:text-light hover:border-linkedin transition-colors">
+                <i class="fa fa-linkedin"></i>
+              </a>
+              <a href="https://twitter.com/tongmingbiotech" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full border border-twitter/30 flex items-center justify-center hover:bg-twitter hover:text-light hover:border-twitter transition-colors">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </div>
+          </div>
+          <div>
+            <form class="space-y-6" id="contact-form">
+              <div>
+                <label for="name" class="block text-sm font-medium mb-2">Name</label>
+                <input type="text" id="name" class="w-full px-4 py-3 border border-accent focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors" placeholder="Your name" required>
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                <input type="email" id="email" class="w-full px-4 py-3 border border-accent focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors" placeholder="Your email" required>
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                <textarea id="message" rows="5" class="w-full px-4 py-3 border border-accent focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary transition-colors" placeholder="Your message" required></textarea>
+              </div>
+              <button type="submit" class="w-full bg-primary text-light px-8 py-3 text-sm uppercase tracking-widest hover:bg-primary/90 transition-colors" id="submit-btn">
+                <span id="btn-text">Send Message</span>
+                <span id="btn-loading" class="hidden"><span class="loading-indicator"></span> Sending...</span>
+              </button>
+              <!-- 成功和错误消息显示区域 -->
+              <div id="success-message" class="form-message success-message">
+                Your message has been sent successfully!
+              </div>
+              <div id="error-message" class="form-message error-message">
+                There was an error sending your message. Please try again later.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-12 border-t border-accent/30">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <p class="text-sm text-primary/70 text-center md:text-right">© 2025 KON TIAN biotech Co., Ltd. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 创建动态化学分子背景
+    function createMoleculeBackground() {
+      const container = document.getElementById('molecule-container');
+      const moleculeCount = 15; // 分子数量
+      const molecules = [];
+      
+      // 创建分子
+      for (let i = 0; i < moleculeCount; i++) {
+        const molecule = document.createElement('div');
+        molecule.classList.add('molecule');
+        
+        // 随机大小和位置
+        const size = Math.random() * 40 + 10;
+        const posX = Math.random() * 100;
+        const posY = Math.random() * 100;
+        const delay = Math.random() * 5;
+        const duration = Math.random() * 10 + 10;
+        
+        molecule.style.width = `${size}px`;
+        molecule.style.height = `${size}px`;
+        molecule.style.left = `${posX}%`;
+        molecule.style.top = `${posY}%`;
+        molecule.style.animationDelay = `${delay}s`;
+        molecule.style.animationDuration = `${duration}s`;
+        
+        container.appendChild(molecule);
+        molecules.push({
+          element: molecule,
+          x: posX,
+          y: posY,
+          size: size
+        });
+      }
+      
+      // 创建分子间的连接（模拟化学键）
+      for (let i = 0; i < molecules.length; i++) {
+        for (let j = i + 1; j < molecules.length; j++) {
+          // 只连接距离较近的分子
+          const distance = Math.hypot(
+            molecules[i].x - molecules[j].x,
+            molecules[i].y - molecules[j].y
+          );
+          
+          if (distance < 20) {
+            const connection = document.createElement('div');
+            connection.classList.add('molecule-connection');
+            
+            // 计算连接的长度和角度
+            const length = distance * container.offsetWidth / 100;
+            const angle = Math.atan2(
+              molecules[j].y - molecules[i].y,
+              molecules[j].x - molecules[i].x
+            ) * 180 / Math.PI;
+            
+            connection.style.width = `${length}px`;
+            connection.style.height = '2px';
+            connection.style.left = `${molecules[i].x}%`;
+            connection.style.top = `${molecules[i].y}%`;
+            connection.style.transform = `rotate(${angle}deg)`;
+            
+            container.appendChild(connection);
+          }
+        }
+      }
+    }
+
+    // 页面加载完成后创建分子背景
+    window.addEventListener('load', createMoleculeBackground);
+
+    // Telegram Bot设置
+    const TELEGRAM_BOT_TOKEN = "8391594025:AAEmP6OcCNaJR4ZlcFTjMxNwXUmITsOI_48";
+    const TELEGRAM_CHAT_ID = "7988811096";
+
+    // 表单提交处理 - 发送到Telegram
+    document.getElementById('contact-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      // 显示加载状态
+      const submitBtn = document.getElementById('submit-btn');
+      const btnText = document.getElementById('btn-text');
+      const btnLoading = document.getElementById('btn-loading');
+      btnText.classList.add('hidden');
+      btnLoading.classList.remove('hidden');
+      submitBtn.disabled = true;
+      
+      // 隐藏之前的消息
+      document.getElementById('success-message').classList.add('hidden');
+      document.getElementById('error-message').classList.add('hidden');
+      
+      // 获取表单数据
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        message: document.getElementById('message').value,
+        timestamp: new Date().toLocaleString()
+      };
+      
+      try {
+        // 发送到Telegram
+        const telegramMessage = `
+New contact form submission:
+Name: ${formData.name}
+Email: ${formData.email}
+Time: ${formData.timestamp}
+
+Message:
+${formData.message}
+        `.trim();
+        
+        // 编码消息内容
+        const encodedMessage = encodeURIComponent(telegramMessage);
+        
+        // 发送到Telegram API
+        const telegramResponse = await fetch(
+          `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodedMessage}`,
+          { method: 'GET' }
+        );
+        
+        const telegramData = await telegramResponse.json();
+        if (!telegramData.ok) {
+          throw new Error('Failed to send message to Telegram');
+        }
+        
+        // 发送成功
+        document.getElementById('success-message').classList.remove('hidden');
+        document.getElementById('contact-form').reset();
+      } catch (error) {
+        console.error("Error sending data:", error);
+        document.getElementById('error-message').classList.remove('hidden');
+      } finally {
+        // 恢复按钮状态
+        btnText.classList.remove('hidden');
+        btnLoading.classList.add('hidden');
+        submitBtn.disabled = false;
+        
+        // 3秒后隐藏成功消息
+        if (!document.getElementById('success-message').classList.contains('hidden')) {
+          setTimeout(() => {
+            document.getElementById('success-message').classList.add('hidden');
+          }, 3000);
+        }
+      }
+    });
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-white', 'shadow-md');
+      } else {
+        navbar.classList.remove('bg-white', 'shadow-md');
+      }
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuToggle.innerHTML = mobileMenu.classList.contains('hidden') 
+        ? '<i class="fa fa-bars"></i>' 
+        : '<i class="fa fa-times"></i>';
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu if open
+          if (!mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.add('hidden');
+            menuToggle.innerHTML = '<i class="fa fa-bars"></i>';
+          }
+        }
+      });
+    });
+
+    // Reveal animations on scroll
+    const revealElements = document.querySelectorAll('.grid, section > div > h2, section > div > p');
+    
+    const revealOnScroll = function() {
+      for (let i = 0; i < revealElements.length; i++) {
+        const windowHeight = window.innerHeight;
+        const elementTop = revealElements[i].getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          revealElements[i].classList.add('opacity-100', 'translate-y-0');
+          revealElements[i].classList.remove('opacity-0', 'translate-y-10');
+        }
+      }
+    };
+    
+    // Set initial state
+    revealElements.forEach(el => {
+      el.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+    });
+    
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Check on page load
+  </script>
+</body></html>
+    
